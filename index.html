@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="bg-dark">
+    <div class="bg-dark" id="barraMenuId">
         <div class="d-flex justify-content-center row ">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark col-md-9">
 
@@ -25,27 +25,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active" id="item1">
-                            <a class="nav-link" href="/1.html">Menu 1</a>
+                        <li class="nav-item" id="itemRestaurante">
+                            <a class="nav-link" href="/restaurante.html">Restaurantes</a>
                         </li>
-                        <li class="nav-item" id="item2">
-                            <a class="nav-link" href="/2.html">Menu 2</a>
+                        <li class="nav-item" id="itemUsuario">
+                            <a class="nav-link" href="/usuarios.html">Usuarios</a>
                         </li>
 
-                        <li class="nav-item" id="item3">
-                            <a class="nav-link " href="/3.html" tabindex="-1" aria-disabled="true">
-                                Menu 3</a>
-                        </li>
-                        <li class="nav-item" id="item4">
-                            <a class="nav-link " href="/4.html" tabindex="-1" aria-disabled="true">
-                                Menu 4</a>
-                        </li>
-                        <li class="nav-item" id="item5">
-                            <a class="nav-link " href="/5.html" tabindex="-1" aria-disabled="true">
-                                Menu 5</a>
+                        <li class="nav-item" id="itemComentario">
+                            <a class="nav-link " href="/comentario.html" tabindex="-1" aria-disabled="true">
+                                Comentarios</a>
                         </li>
                         <li class="nav-item" id="itemSalir" style="cursor: pointer;">
-                            <a class="nav-link " tabindex="-1" aria-disabled="true">
+                            <a class="nav-link " tabindex="-1" aria-disabled="true" onclick="salir()">
                                 Salir</a>
                         </li>
                     </ul>
@@ -56,7 +48,7 @@
             <div id="divDatosUsu" style="visibility: hidden;" class="text-white d-flex justify-content-center align-items-center bg-dark
                          col-md-3">
                 <label class="mr-2 text-white " id="lblNombreUsuario"></label>
-                <img id="imgFotoUsuario" src="assets/img/nouser.jpg" width="40" height="40" />
+                <img id="imgFotoUsuario" src="asset/img/nouser.jpg" width="40" height="40" />
             </div>
 
         </div>
@@ -65,9 +57,12 @@
     <div class="d-flex justify-content-center mt-5" id="divRedes">
         <img class="ml-2" onclick="authGoogle()" src="assets/img/google.png" width="50" height="50"
             style="cursor: pointer;" />
-        <img class="ml-2" src="assets/img/github.jpg" width="50" height="50" style="cursor: pointer;" />
-        <img class="ml-2" src="assets/img/twitter.png" width="50" height="50" style="cursor: pointer;" />
-        <img class="ml-2" src="assets/img/facebook.png" width="50" height="50" style="cursor: pointer;" />
+        <img class="ml-2" onclick="authGithub()" src="assets/img/github.jpg" width="50" height="50"
+            style="cursor: pointer;" />
+        <img class="ml-2" onclick="authTwitter()" src="assets/img/twitter.png" width="50" height="50"
+            style="cursor: pointer;" />
+        <img class="ml-2" onclick="authFacebook()" src="assets/img/facebook.png" width="50" height="50"
+            style="cursor: pointer;" />
     </div>
 
 
@@ -77,7 +72,7 @@
             <input type="text" id="txtcorreoIngresar" class="form-control" />
             <label>Ingrese contraseña</label>
             <input type="password" id="txtcontraIngresar" class="form-control" />
-            <button class="btn btn-primary btn-block mt-4">Iniciar Sesión</button>
+            <button class="btn btn-primary btn-block mt-4" onclick="iniciarSesion()">Iniciar Sesión</button>
             <button onclick="abrirMoldal()" class="btn btn-secondary btn-block mt-4" data-toggle="modal"
                 data-target="#exampleModal">Registrarse</button>
             <br>

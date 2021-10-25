@@ -1,5 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider , signInWithPopup } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider , signInWithPopup , 
+            signInWithEmailAndPassword, TwitterAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
 
+import { verAutenticacion } from "./firebase.js";
+
+window.onload = function(){
+    verAutenticacion();
+}
 
 window.abrirMoldal = function abrirMoldal() {
     document.getElementById("alertaErrorRegistro").style.display = "none";
@@ -58,33 +64,71 @@ window.crearUsuario = function crearUsuario() {
 
 }
 
+window.iniciarSesion = function iniciarSesion() {
+
+    const email =  document.getElementById("txtcorreoIngresar").value;
+    const password = document.getElementById("txtcontraIngresar").value;
+
+    if(email == "" || password == "") {
+        document.getElementById("alertErrorLogueo").style.display = "block";
+        document.getElementById("alertErrorLogueo").innerHTML = "Email y/o contraseña son obligatorios";
+        return false;
+    } else {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password).then((userCredential) =>{
+
+            //console.log(userCredential);
+
+        }).catch((error) =>{
+            document.getElementById("alertErrorLogueo").style.display = "block";
+            document.getElementById("alertErrorLogueo").innerHTML = error.message;
+        });
+    }
+
+}
+
 window.authGoogle = function authGoogle() {
-
     const provider = new GoogleAuthProvider();
-    const auth = getAuth();
+    authGeneric(provider, "Twitter");
+}
 
+window.authTwitter = function authTwitter() {
+    const provider = new TwitterAuthProvider();
+    authGeneric(provider, "Twitter");
+}
+
+window.authGithub = function authGithub() {
+    const provider = new GithubAuthProvider();
+    authGeneric(provider, "GitHub");
+}
+
+window.authFacebook = function authFacebook() {
+    const provider = new FacebookAuthProvider();
+    authGeneric(provider, "Facebook");
+}
+
+function authGeneric(provider, name) {
+    const auth = getAuth();
     signInWithPopup(auth, provider)
         .then((result) => {
+
             // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+            //const credential = GoogleAuthProvider.credentialFromResult(result);
+            //const token = credential.accessToken;
             // The signed-in user info.
-            const user = result.user;
+           //console.log(credential);
+            //console.log(token);
 
-            console.log(credential);
-            console.log(token);
-            console.log(user);
-            alert("Iniciado correctamente desde Google");
+            //const user = result.user;
+            //console.log(user);
 
-            // ...
         }).catch((error) => {
             //const errorCode = error.code;
             //const email = error.email;
+
             const errorMessage = error.message;
             document.getElementById("alertErrorLogueo").style.display = "block";
             document.getElementById("alertErrorLogueo").innerHTML = errorMessage;     
-            // The AuthCredential type that was used.
-            //const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
+   
         });
 }
