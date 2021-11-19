@@ -1,10 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyASDLU-4oMNVg-sO-j3FY8zw3YXrnVrAc8",
   authDomain: "fir-94a79.firebaseapp.com",
@@ -15,7 +11,6 @@ const firebaseConfig = {
   measurementId: "G-8Y9DBQLXS5"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 window.salir = function salir() {
@@ -26,6 +21,7 @@ window.salir = function salir() {
           alert("Se produce error al cerrar la sesion");
           console.log(err);
       });
+      
 }
 
 
@@ -33,9 +29,7 @@ export function verAutenticacion(){
     const auth = getAuth();
     onAuthStateChanged(auth, (user) =>{
         if(user) {
-          /*Al iniciar sesion
-          console.log("Inicio sesion");  
-          console.log(user);*/
+
 
           console.log(user);
           if(document.getElementById("divRedes"))
@@ -65,10 +59,6 @@ export function verAutenticacion(){
 
 
         } else {
-         /** 
-          * Al cerrar sesion
-          * 
-         */
           document.getElementById("barraMenuId").style.visibility = "hidden";
           document.getElementById("divDatosUsu").style.visibility = "hidden";
 
