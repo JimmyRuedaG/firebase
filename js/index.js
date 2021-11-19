@@ -117,6 +117,7 @@ window.authFacebook = function authFacebook() {
     authGeneric(provider, "Facebook");
 }
 
+
 function authGeneric(provider, providerName) {
     const auth = getAuth();
     signInWithPopup(auth, provider)

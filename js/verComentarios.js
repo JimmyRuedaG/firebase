@@ -7,11 +7,9 @@ const db = getFirestore();
 window.onload = function () {
     verAutenticacion();
 
-    const idRestarunte = "o3lECafXWNDlaF0ZDnGg";    
-    //const q = query(collection(db, "resturante/" + idRestarunte + "/comentario"), where("rating", "==", 5));
-    //const q = query(collection(db, "resturante/" + idRestarunte + "/comentario"),  where("rating", ">=", 3),orderBy("rating", "asc"), limit(100));
-
-    const q = query(collection(db, "resturante/" + idRestarunte + "/comentario"), orderBy("rating", "asc"));
+    const idRestarunte = "6HdfyNIDxAb1u7RbCq9G";    
+   
+    const q = query(collection(db, "resturante/" + idRestarunte + "/comentario"), orderBy("rating", "desc"));
 
     const subscribe = onSnapshot(q, (querySnapshot) =>{
            

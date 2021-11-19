@@ -16,9 +16,9 @@ function hacerComentario() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) =>{
         if(user) {
-            const idRestarunte = "o3lECafXWNDlaF0ZDnGg"; 
+            const idRestarunte = "6HdfyNIDxAb1u7RbCq9G"; 
             const comentario = "Pesimo.";
-            const rating = 5;
+            const rating = 2;
 
             const nuevoComentario = doc(collection(db, "resturante/"+ idRestarunte + "/comentario"));
             setDoc(nuevoComentario , {
